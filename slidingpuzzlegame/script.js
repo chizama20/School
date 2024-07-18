@@ -7,8 +7,7 @@ function init() {
     for (let i = 0; i < size * size - 1; i++) {
         tiles.push(i + 1);
     }
-    tiles.push(null); // The empty tile
-
+    tiles.push(null); 
     render();
     shuffle();
 }
@@ -29,13 +28,11 @@ function render() {
 }
 
 function shuffle() {
-    // Shuffle the tiles
     for (let i = tiles.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
     }
 
-    // Find the empty tile
     const emptyIndex = tiles.indexOf(null);
     emptyTile = { x: emptyIndex % size, y: Math.floor(emptyIndex / size) };
     render();
@@ -49,7 +46,6 @@ function moveTile(index) {
     const dy = Math.abs(y - emptyTile.y);
 
     if (dx + dy === 1) {
-        // Move the tile
         tiles[emptyTile.y * size + emptyTile.x] = tiles[y * size + x];
         tiles[y * size + x] = null;
         emptyTile = { x, y };
